@@ -1,6 +1,6 @@
 var APIKey = "6ca2b4a417c131dfd2fadd3234e442ea";
 var geoAPI = "http://api.openweathermap.org/geo/1.0/direct?q=Charlotte&limit=5&appid=6ca2b4a417c131dfd2fadd3234e442ea"
-// var oneCallAPI = "`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=6ca2b4a417c131dfd2fadd3234e442ea`"
+// var oneCallAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=6ca2b4a417c131dfd2fadd3234e442ea`
 
 function init() {
     fetch(geoAPI)
