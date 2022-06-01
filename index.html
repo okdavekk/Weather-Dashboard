@@ -1,12 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <line rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    </line>
+    <title>Weather Dashboard</title>
 </head>
+
 <body>
-    
+    <header class="container-fluid text-center text-white bg-dark p-2 weather-header">
+
+        <h1>Weather Dashboard</h1>
+
+    </header>
+
+    <div class="container-fluid" style="max-width: 1400px">
+        <div class="row">
+            <aside class="col-lg-3 pb-3">
+                <h2 id="form-heading" class="mt-1 h3 form-label">
+                    Search for a City:
+                </h2>
+                <form id="search-form" class="form">
+                    <div class="form-inline form-group">
+                        <div class="input-group">
+                            <input
+                            class="form-input weather-search"
+                            type="text">
+
+                        </div>
+
+
+                    </div>
+
+                </form>
+            </aside>
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+    <script type="text/javascript" src="./style.js"></script>
+
+
 </body>
+
 </html>
