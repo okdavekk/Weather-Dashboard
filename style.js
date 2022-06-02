@@ -1,10 +1,9 @@
 var APIKey = "6ca2b4a417c131dfd2fadd3234e442ea";
 
-var currentDate = moment().format("dddd, DD MMMM YYYY")
+var currentDate = moment().format("MM/DD/YYYY")
 $("#display-date").html("Date: " + currentDate);
 
 var button = document.getElementById("search-button");
-console.log(button);
 
 
 function init(city) {
@@ -58,25 +57,25 @@ function renderForecast(forecastData) {
         var currentUnixTimeStamp = nextDay.dt *1000; 
 
         var tempTime = new Date(currentUnixTimeStamp);
-        var localTime = tempTime.toLocaleString()
+        var localTime = tempTime.toLocaleDateString()
         console.log(localTime);
 
-        var currentTempD1 = nextDay.temp.day;
-        var currentHumidityD1 = nextDay.humidity;
-        var currentWindSpeedD1 = nextDay.wind_speed;
-        var currentUVID1 = nextDay.uvi;
+        var nextDayTemp = nextDay.temp.day;
+        var nextDayHumidity = nextDay.humidity;
+        var nextDayWindSpeed = nextDay.wind_speed;
+        var nextDayUVI = nextDay.uvi;
 
-        var currentTempD1El = document.createElement("p");
-        var currentHumidityD1El = document.createElement("p");
-        var currentWindSpeedD1El = document.createElement("p");
-        var currentUVID1El = document.createElement("p");
+        var localTimeEl = document.createElement("p");
+        var nextDayTempEl = document.createElement("p");
+        var nextDayHumidityEl = document.createElement("p");
+        var nextDayWindSpeedEl = document.createElement("p");
 
-        currentTempD1El.textContent = "Temperature: " + currentTempD1 + " degrees F";
-        currentWindSpeedD1El.textContent = "Wind Speed: " + currentWindSpeedD1 + " MPH";
-        currentUVID1El.textContent = "UVI: " + currentUVID1;
-        currentHumidityD1El.textContent = "Humidity: " + currentHumidityD1 + " %";
+        localTimeEl.textContent = "Date: " + localTime;
+        nextDayTempEl.textContent = "Temperature: " + nextDayTemp + " degrees F";
+        nextDayWindSpeedEl.textContent = "Wind Speed: " + nextDayWindSpeed + " MPH";
+        nextDayHumidityEl.textContent = "Humidity: " + nextDayHumidity + " %";
 
-        document.body.append(currentTempD1El, currentWindSpeedD1El, currentUVID1El, currentHumidityD1El);
+        document.body.append(localTimeEl, nextDayTempEl, nextDayWindSpeedEl, nextDayHumidityEl);
 
     }
 }
