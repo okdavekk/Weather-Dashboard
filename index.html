@@ -22,7 +22,7 @@
         <div class="row">
             <aside class="col-lg-3 pb-3">
                 <h2 id="form-heading" class="mt-1 h3 form-label">
-                    Search for a City:
+                    Search for a City: <span id="city-name"></span>
                 </h2>
                 <form id="search-form" class="form">
                     <div class="form-inline form-group">
@@ -37,17 +37,8 @@
         </div>
     </div>
     <hr>
-    <div id="display-date" class="display-date"> </div>
+    <h3 id="display-date" class="display-date"></h3>
     
-    <section id="current-weather">
-        <div id="current-temp" class="current-temp"></div>
-        <div id="current-wind"></div>
-        <div id="current-uvi"></div>
-        <div id="current-humidity"></div>
-    </section>
-
-
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

@@ -1,31 +1,31 @@
-var APIKey = "6ca2b4a417c131dfd2fadd3234e442ea";
+var keyAPI = "6ca2b4a417c131dfd2fadd3234e442ea";
 
 var currentDate = moment().format("MM/DD/YYYY")
-$("#display-date").html("Date: " + currentDate);
+$("#display-date").html("Today's Forecast: " + currentDate);
 
 var button = document.getElementById("search-button");
 
 
 function init(city) {
-    var geoAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=6ca2b4a417c131dfd2fadd3234e442ea`
+    var geoAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=` + keyAPI;
     fetch(geoAPI)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data[0].lat, data[0].lon);
             getOneCallWeather(data[0].lat, data[0].lon);
+
         });
 }
 
 
 function getOneCallWeather(lat, lon) {
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=6ca2b4a417c131dfd2fadd3234e442ea&units=imperial&limit=5`)
+    var oneCallAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&limit=5&appid=` + keyAPI;
+    fetch(oneCallAPI)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
 
             var currentDay = data.current;
 
@@ -34,10 +34,10 @@ function getOneCallWeather(lat, lon) {
             var currentWindSpeed = currentDay.wind_speed;
             var currentUVI = currentDay.uvi;
 
-            var currentTempEl = document.createElement("p");
-            var currentHumidityEl = document.createElement("p");
-            var currentWindSpeedEl = document.createElement("p");
-            var currentUVIEl = document.createElement("p");
+            var currentTempEl = document.createElement("div");
+            var currentHumidityEl = document.createElement("div");
+            var currentWindSpeedEl = document.createElement("div");
+            var currentUVIEl = document.createElement("div");
 
             currentTempEl.textContent = "Temperature: " + currentTemp + " degrees F";
             currentWindSpeedEl.textContent = "Wind Speed: " + currentWindSpeed + " MPH";
@@ -58,19 +58,17 @@ function renderForecast(forecastData) {
 
         var tempTime = new Date(currentUnixTimeStamp);
         var localTime = tempTime.toLocaleDateString()
-        console.log(localTime);
 
         var nextDayTemp = nextDay.temp.day;
         var nextDayHumidity = nextDay.humidity;
         var nextDayWindSpeed = nextDay.wind_speed;
-        var nextDayUVI = nextDay.uvi;
 
-        var localTimeEl = document.createElement("p");
-        var nextDayTempEl = document.createElement("p");
-        var nextDayHumidityEl = document.createElement("p");
-        var nextDayWindSpeedEl = document.createElement("p");
+        var localTimeEl = document.createElement("h3");
+        var nextDayTempEl = document.createElement("div");
+        var nextDayHumidityEl = document.createElement("div");
+        var nextDayWindSpeedEl = document.createElement("div");
 
-        localTimeEl.textContent = "Date: " + localTime;
+        localTimeEl.textContent = "Forecast for: " + localTime;
         nextDayTempEl.textContent = "Temperature: " + nextDayTemp + " degrees F";
         nextDayWindSpeedEl.textContent = "Wind Speed: " + nextDayWindSpeed + " MPH";
         nextDayHumidityEl.textContent = "Humidity: " + nextDayHumidity + " %";
@@ -87,4 +85,5 @@ button.addEventListener('click', function (event) {
     if (searchBoxValue != "") {
         init(searchBoxValue);
     }
+
 });
