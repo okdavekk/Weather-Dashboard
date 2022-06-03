@@ -7,7 +7,7 @@ var button = document.getElementById("search-button");
 
 
 function init(city) {
-    var geoAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=` + keyAPI;
+    var geoAPI = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=` + keyAPI;
     fetch(geoAPI)
         .then(function (response) {
             return response.json();
