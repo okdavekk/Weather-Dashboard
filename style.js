@@ -5,6 +5,7 @@ $("#display-date").html("Today's Forecast: " + currentDate);
 
 var button = document.getElementById("search-button");
 
+var weatherContainer = document.getElementById("weather-container");
 
 function init(city) {
     var geoAPI = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=` + keyAPI;
@@ -61,7 +62,7 @@ function getOneCallWeather(lat, lon) {
             currentUVIEl.textContent = "UVI: " + currentUVI;
             currentHumidityEl.textContent = "Humidity: " + currentHumidity + " %";
 
-            document.body.append(currentTempEl, currentWindSpeedEl, currentUVIEl, currentHumidityEl);
+            weatherContainer.append(currentTempEl, currentWindSpeedEl, currentUVIEl, currentHumidityEl);
 
             renderForecast(data.daily);
         })
@@ -71,10 +72,7 @@ function getOneCallWeather(lat, lon) {
 function renderForecast(forecastData) {
     for (var i = 0; i < 5; i++) {
         var nextDay = forecastData[i + 1];
-        var currentUnixTimeStamp = nextDay.dt * 1000;
-
-        var tempTime = new Date(currentUnixTimeStamp);
-        var localTime = tempTime.toLocaleDateString()
+        var currentTime = timeConversion(nextDay.dt)
 
         var nextDayTemp = nextDay.temp.day;
         var nextDayHumidity = nextDay.humidity;
@@ -85,21 +83,33 @@ function renderForecast(forecastData) {
         var nextDayHumidityEl = document.createElement("div");
         var nextDayWindSpeedEl = document.createElement("div");
 
-        localTimeEl.textContent = "Forecast for: " + localTime;
+        localTimeEl.textContent = "Forecast for: " + currentTime;
         nextDayTempEl.textContent = "Temperature: " + nextDayTemp + " degrees F";
         nextDayWindSpeedEl.textContent = "Wind Speed: " + nextDayWindSpeed + " MPH";
         nextDayHumidityEl.textContent = "Humidity: " + nextDayHumidity + " %";
 
-        document.body.append(localTimeEl, nextDayTempEl, nextDayWindSpeedEl, nextDayHumidityEl);
+        weatherContainer.append(localTimeEl, nextDayTempEl, nextDayWindSpeedEl, nextDayHumidityEl);
 
     }
 }
 
+//function that asks for a unix time stamp and coverts it to local time. Placeholder for what we have in our function
+function timeConversion(unixTimeStamp) {
+    // Unix time stamp default is seconds and we are returning milliseconds.  Time conversion needs milliseconds.  
+    var currentUnixTimeStamp = unixTimeStamp * 1000;
+    // Use date constructor class to covert milliseconds time stamp to the date format.  MM/DD/YYYY.  Explicitly returns GMT time. Returns an object
+    var tempTime = new Date(currentUnixTimeStamp);
+    // Specifies what date we want to use.  Uses a method and they live on the object tempTime
+    var localTime = tempTime.toLocaleDateString();
+    // returning the local time value
+    return localTime;
+}
 
 button.addEventListener('click', function (event) {
     event.preventDefault()
     var searchBoxValue = document.getElementById("form-input").value;
     if (searchBoxValue != "") {
+        weatherContainer.innerHTML = " ";
         init(searchBoxValue);
     }
     var cityName = document.getElementById("form-input").value;
