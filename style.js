@@ -24,7 +24,6 @@ function init(city) {
         });
 }
 
-
 function getOneCallWeather(lat, lon) {
     var oneCallAPI = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&limit=5&appid=` + keyAPI;
     fetch(oneCallAPI)
@@ -70,7 +69,6 @@ function getOneCallWeather(lat, lon) {
 
 
 function renderForecast(forecastData) {
-
     for (var i = 0; i < 5; i++) {
         var nextDay = forecastData[i + 1];
         var currentUnixTimeStamp = nextDay.dt * 1000;
