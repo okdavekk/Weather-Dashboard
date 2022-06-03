@@ -45,6 +45,7 @@ The following animation demonstrates the application functionality:
 
 ### What my page looks like:
 
+![My Work](./Pictures/Weather-Dashboard.png)
 
 ## Authors and Acknowledgement
-Created by myself with help from many others
+Created by myself with help from my tutor Juan Santiago and the class instructor Anthony Cooper

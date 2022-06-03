@@ -68,6 +68,7 @@ function getOneCallWeather(lat, lon) {
         })
 }
 
+
 function renderForecast(forecastData) {
 
     for (var i = 0; i < 5; i++) {
@@ -108,13 +109,11 @@ button.addEventListener('click', function (event) {
 });
 
 
-
 function getItemsFromStorage() {
     var cityName = localStorage.getItem("City");
     var citySearchHistory = document.getElementById("city-search-history");
-    var citySearchHistoryEl = document.createElement("button")
-
     citySearchHistory.innerHTML = cityName;
+
 }
 getItemsFromStorage();
 
