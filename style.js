@@ -6,9 +6,6 @@ $("#display-date").html("Today's Forecast: " + currentDate);
 var button = document.getElementById("search-button");
 
 
-
-
-
 function init(city) {
     var geoAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=` + keyAPI;
     fetch(geoAPI)
@@ -21,7 +18,7 @@ function init(city) {
             var cityName = document.getElementById("form-input").value;
 
             var cityNameDisplay = document.getElementById("city-name");
-            cityNameDisplay.innerHTML = cityName;            
+            cityNameDisplay.innerHTML = cityName;
 
 
         });
@@ -100,8 +97,6 @@ function renderForecast(forecastData) {
 }
 
 
-
-
 button.addEventListener('click', function (event) {
     event.preventDefault()
     var searchBoxValue = document.getElementById("form-input").value;
@@ -110,15 +105,16 @@ button.addEventListener('click', function (event) {
     }
     var cityName = document.getElementById("form-input").value;
     localStorage.setItem("City", cityName);
-
-
 });
+
+
 
 function getItemsFromStorage() {
     var cityName = localStorage.getItem("City");
     var citySearchHistory = document.getElementById("city-search-history");
+    var citySearchHistoryEl = document.createElement("button")
 
     citySearchHistory.innerHTML = cityName;
-
 }
 getItemsFromStorage();
+
